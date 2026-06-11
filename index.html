@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>POP MART - Molly 艺术家系列</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(180deg, #e8f6f3 0%, #d5f5e3 30%, #fdebd0 60%, #fadbd8 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* ---- 顶部品牌标识 ---- */
+  .header {
+    text-align: center;
+    padding: 30px 0 10px;
+  }
+  .logo-text {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .brand-name {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #2c3e50;
+  }
+  .brand-name span {
+    color: #48c9b0;
+  }
+
+  /* ---- 主视觉区 ---- */
+  .hero {
+    text-align: center;
+    padding: 15px 0 10px;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #48c9b0, #45b7d1);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(72, 201, 176, 0.3);
+  }
+  .hero-img-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .hero-img-wrap::before {
+    content: '';
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 15px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-img {
+    width: 260px;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.15));
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ---- 角色信息 ---- */
+  .character-info {
+    text-align: center;
+    padding: 5px 0 12px;
+  }
+  .character-series {
+    font-size: 12px;
+    color: #48c9b0;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  .character-name {
+    font-size: 36px;
+    font-weight: 900;
+    color: #2c3e50;
+    line-height: 1.1;
+    margin: 4px 0;
+  }
+  .character-desc {
+    font-size: 13px;
+    color: #95a5a6;
+    max-width: 240px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ---- 特性标签 ---- */
+  .features {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0 20px;
+    flex-wrap: wrap;
+  }
+  .feature-tag {
+    background: #fff;
+    padding: 10px 16px;
+    border-radius: 16px;
+    font-size: 12px;
+    color: #555;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .feature-icon {
+    font-size: 16px;
+  }
+
+  /* ---- 品牌故事卡片 ---- */
+  .story-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 24px;
+    margin: 0 0 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .story-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .story-text {
+    font-size: 13px;
+    color: #7f8c8d;
+    line-height: 1.8;
+  }
+
+  /* ---- 底部CTA ---- */
+  .cta-section {
+    text-align: center;
+    padding: 5px 0 35px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #48c9b0, #45b7d1);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 25px rgba(72, 201, 176, 0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 3px 15px rgba(72, 201, 176, 0.2);
+  }
+  .cta-hint {
+    font-size: 11px;
+    color: #bdc3c7;
+    margin-top: 8px;
+  }
+
+  /* ---- 装饰泡泡 ---- */
+  .bubble {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .bubble::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(72,201,176,0.25), rgba(72,201,176,0.05));
+    animation: rise 6s ease-in infinite;
+  }
+  .bubble:nth-child(1) { left: 8%; bottom: -30px; }
+  .bubble:nth-child(1)::after { animation-delay: 0s; width: 18px; height: 18px; }
+  .bubble:nth-child(2) { left: 28%; bottom: -30px; }
+  .bubble:nth-child(2)::after { animation-delay: 2s; width: 24px; height: 24px; }
+  .bubble:nth-child(3) { left: 55%; bottom: -30px; }
+  .bubble:nth-child(3)::after { animation-delay: 1s; width: 14px; height: 14px; }
+  .bubble:nth-child(4) { left: 75%; bottom: -30px; }
+  .bubble:nth-child(4)::after { animation-delay: 3.5s; width: 22px; height: 22px; }
+  .bubble:nth-child(5) { left: 90%; bottom: -30px; }
+  .bubble:nth-child(5)::after { animation-delay: 4.5s; width: 16px; height: 16px; }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    50% { opacity: 0.3; }
+    100% { transform: translateY(-105vh) scale(0.4); opacity: 0; }
+  }
+
+  /* ---- footer ---- */
+  .footer {
+    text-align: center;
+    padding: 0 0 25px;
+    font-size: 10px;
+    color: #bdc3c7;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="page">
+    <!-- 品牌标识 -->
+    <div class="header">
+      <div class="logo-text">Pop Mart</div>
+      <div class="brand-name">泡泡玛特 <span>MOLLY</span></div>
+    </div>
+
+    <!-- 主视觉 -->
+    <div class="hero">
+      <div class="hero-badge">限量艺术家系列</div>
+      <div class="hero-img-wrap">
+        <img class="hero-img" src="molly.png" alt="Molly 艺术家系列">
+      </div>
+    </div>
+
+    <!-- 角色信息 -->
+    <div class="character-info">
+      <div class="character-series">ARTIST SERIES</div>
+      <div class="character-name">Molly</div>
+      <div class="character-desc">
+        金发碧眼的小画家，用画笔描绘天马行空的想象世界
+      </div>
+    </div>
+
+    <!-- 特性标签 -->
+    <div class="features">
+      <div class="feature-tag">
+        <span class="feature-icon">🎨</span> 艺术家联名
+      </div>
+      <div class="feature-tag">
+        <span class="feature-icon">🎁</span> 盲盒收藏
+      </div>
+      <div class="feature-tag">
+        <span class="feature-icon">✨</span> 潮流玩具
+      </div>
+      <div class="feature-tag">
+        <span class="feature-icon">💎</span> 限量发售
+      </div>
+    </div>
+
+    <!-- 故事卡片 -->
+    <div class="story-card">
+      <div class="story-title">
+        <span>🌟</span> 关于 Molly
+      </div>
+      <div class="story-text">
+        Molly 是香港艺术家 Kenny Wong 创作的经典潮玩角色。<br><br>
+        她有着标志性的湖绿色大眼睛和金发波波头，撅着小嘴，永远保持着一副傲娇又天真的神情。<br><br>
+        每一款 Molly 都是艺术家与潮流的碰撞，从盲盒到限定大娃，她早已成为当代潮流文化的符号。
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <a href="https://www.popmart.com.cn" class="cta-btn" target="_blank">探索更多 Molly</a>
+      <div class="cta-hint">开启你的潮流收藏之旅</div>
+    </div>
+
+    <div class="footer">
+      © 2026 POP MART · 泡泡玛特
+    </div>
+  </div>
+</body>
+</html>
